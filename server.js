@@ -5,6 +5,8 @@ var multer = require("multer")
 var crypto = require("crypto")
 const uploadImg = multer({dest: '/images/'})
 
+var numPotatos = 4;
+
 // Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data 
 
 var express = require('express')
@@ -40,14 +42,18 @@ app.post("/new-potato", uploadImg.single("newPotato") ,function(req, res, next) 
         res.end();
       })
 })
-    
+
+//Method to fetch the image of the potato
 app.get('/:particularPotato', function(req,res,next){
     console.log("GET /" + req.params.particularPotato)
     console.log("req.url", req.url)
     console.log("req.method", req.method)
     console.log("req.headers", req.headers)
 
-    res.status(200).sendFile(__dirname + '/images/' + req.params.particularPotato)
+    var num = Math.round(Math.random() * (numPotatos - 1))
+    num += 1
+    console.log("Returning :" + req.params.particularPotato + num + '.png')
+    res.status(200).sendFile(__dirname + '/images/' + req.params.particularPotato + num + '.png')
 })
 
 app.get('*', function(req,res,next){   //Throw 404 if page not found
