@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/osu-cs290-sp21/final-project-potato-juice#readme",
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "formidable": "^1.2.2",
     "fs": "0.0.1-security",

@@ -24,9 +24,10 @@
         
     </div>
 
-    <form action="upload.php" method="post">
-        <input type="file" name="file" id="file"/>
-    </form>
+    <form action="/images" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <button type="submit">Submit</button>
+      </form>
 
 </body>
 </html>
