@@ -4,6 +4,7 @@ var path = require("path")
 var multer = require("multer")
 var crypto = require("crypto")
 const uploadImg = multer({dest: '/images/'})
+const formidable = require('formidable');
 
 // Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data 
 
@@ -32,14 +33,22 @@ app.get('/new-potato', function(req,res,next){
     res.status(200).sendFile(__dirname + '/public/newPotato.html')
 })
 
-app.post("/new-potato", uploadImg.single("newPotato") ,function(req, res, next) { //WORK IN PROGRESS
+app.post('/images', (req, res, next) => { //Image uploading
     
-    var form = new formidable.IncomingForm();
-      form.parse(req, function (err, fields, files) {
-        res.write('File uploaded');
-        res.end();
-      })
-})
+    const form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files){
+        console.log("files.image.path",files.image.path) //.image is a property sent by the form
+        console.log("files.image.name", files.image.name)
+        var oldPath = files.image.path;
+        var newPath = path.join(__dirname, 'images') + '/' + files.image.name;
+        var rawData = fs.readFileSync(oldPath);
+      
+        fs.writeFile(newPath, rawData, function(err){
+            if(err) console.log(err)
+            return res.send("Successfully uploaded")
+        })
+  })
+});
     
 app.get('/:particularPotato', function(req,res,next){
     console.log("GET /" + req.params.particularPotato)
