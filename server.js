@@ -3,6 +3,8 @@ var http = require("http")
 var path = require("path")
 var multer = require("multer")
 var crypto = require("crypto")
+var express = require('express')
+var app = express()
 const uploadImg = multer({dest: '/images/'})
 
 var numPotatos = 4;
