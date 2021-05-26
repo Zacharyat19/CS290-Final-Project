@@ -6,6 +6,7 @@ var crypto = require("crypto")
 var express = require('express')
 var app = express()
 const uploadImg = multer({dest: '/images/'})
+const formidable = require('formidable');
 
 var numPotatos = 4;
 
@@ -36,16 +37,22 @@ app.get('/new-potato', function(req,res,next){
     res.status(200).sendFile(__dirname + '/public/newPotato.html')
 })
 
-app.post("/new-potato", uploadImg.single("newPotato") ,function(req, res, next) { //WORK IN PROGRESS
+app.post('/images', (req, res, next) => { //Image uploading
+    const form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files){
+        console.log("files.image.path",files.image.path) //.image is a property sent by the form
+        console.log("files.image.name", files.image.name)
+        var oldPath = files.image.path;
+        var newPath = path.join(__dirname, 'images') + '/' + files.image.name;
+        var rawData = fs.readFileSync(oldPath);
+      
+        fs.writeFile(newPath, rawData, function(err){
+            if(err) console.log(err)
+            return res.send("Successfully uploaded")
+        })
+  })
+});
     
-    var form = new formidable.IncomingForm();
-      form.parse(req, function (err, fields, files) {
-        res.write('File uploaded');
-        res.end();
-      })
-})
-
-//Method to fetch the image of the potato
 app.get('/:particularPotato', function(req,res,next){
     console.log("GET /" + req.params.particularPotato)
     console.log("req.url", req.url)
