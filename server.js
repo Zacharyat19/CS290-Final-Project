@@ -3,8 +3,12 @@ var http = require("http")
 var path = require("path")
 var multer = require("multer")
 var crypto = require("crypto")
+var express = require('express')
+var app = express()
 const uploadImg = multer({dest: '/images/'})
 const formidable = require('formidable');
+
+var numPotatos = 4;
 
 // Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data 
 
@@ -34,7 +38,6 @@ app.get('/new-potato', function(req,res,next){
 })
 
 app.post('/images', (req, res, next) => { //Image uploading
-    
     const form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files){
         console.log("files.image.path",files.image.path) //.image is a property sent by the form
@@ -56,7 +59,10 @@ app.get('/:particularPotato', function(req,res,next){
     console.log("req.method", req.method)
     console.log("req.headers", req.headers)
 
-    res.status(200).sendFile(__dirname + '/images/' + req.params.particularPotato)
+    var num = Math.round(Math.random() * (numPotatos - 1))
+    num += 1
+    console.log("Returning :" + req.params.particularPotato + num + '.png')
+    res.status(200).sendFile(__dirname + '/images/' + req.params.particularPotato + num + '.png')
 })
 
 app.get('*', function(req,res,next){   //Throw 404 if page not found
