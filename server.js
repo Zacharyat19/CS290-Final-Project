@@ -17,7 +17,34 @@ var app = express()
 
 var port = 420
 
+var images
+var messages
+
 app.use(express.static('public'))
+
+fs.readFile('./images.json', 'utf8', (err, data) => {
+
+    if (err) {
+        console.log(`Error reading file from disk: ${err}`);
+    } else {
+
+        // parse JSON string to JSON object
+        images = JSON.parse(data);
+    }
+
+});
+
+fs.readFile('./messages.json', 'utf8', (err, data) => {
+
+    if (err) {
+        console.log(`Error reading file from disk: ${err}`);
+    } else {
+
+        // parse JSON string to JSON object
+        messages = JSON.parse(data);
+    }
+
+});
 
 app.get('/', function(req,res,next){
     console.log("GET /")
@@ -54,6 +81,7 @@ app.post('/images', (req, res, next) => { //Image uploading
 });
     
 app.get('/:particularPotato', function(req,res,next){
+    if(req.url == "/potato"){
     console.log("GET /" + req.params.particularPotato)
     console.log("req.url", req.url)
     console.log("req.method", req.method)
@@ -63,6 +91,10 @@ app.get('/:particularPotato', function(req,res,next){
     num += 1
     console.log("Returning :" + req.params.particularPotato + num + '.png')
     res.status(200).sendFile(__dirname + '/images/' + req.params.particularPotato + num + '.png')
+    }
+    else{
+        res.status(200).sendFile(__dirname + req.url)
+    }
 })
 
 app.get('*', function(req,res,next){   //Throw 404 if page not found
