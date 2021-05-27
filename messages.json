@@ -1,11 +1,4 @@
 [
-    {
-        "num":2
-    },
-    {
-    "messages":[
-        { "message":"Potatoe","author":"Dom"},
-        { "message":"Pog-tato","author":"Ian"}
-    ]
-    }
+    { "message":"Potatoe","author":"Dom"},
+    { "message":"Pog-tato","author":"Ian"}
 ]

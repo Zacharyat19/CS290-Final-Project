@@ -8,8 +8,6 @@ var app = express()
 const uploadImg = multer({dest: '/images/'})
 const formidable = require('formidable');
 
-var numPotatos = 4;
-
 // Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data 
 
 var express = require('express')
@@ -82,16 +80,33 @@ app.post('/images', (req, res, next) => { //Image uploading
     
 app.get('/:particularPotato', function(req,res,next){
     if(req.url == "/potato"){
-    console.log("GET /" + req.params.particularPotato)
-    console.log("req.url", req.url)
-    console.log("req.method", req.method)
-    console.log("req.headers", req.headers)
+        console.log("GET /" + req.params.particularPotato)
+        console.log("req.url", req.url)
+        console.log("req.method", req.method)
+        console.log("req.headers", req.headers)
 
-    var num = Math.round(Math.random() * (numPotatos - 1))
-    num += 1
-    console.log("Returning :" + req.params.particularPotato + num + '.png')
-    res.status(200).sendFile(__dirname + '/images/' + req.params.particularPotato + num + '.png')
+        var size = 0;
+        images.forEach(db=> {
+            size++;
+        });
+        var num = Math.round(Math.random() * (size - 1))
+        num += 1
+        var i = 1
+        var filename
+        var bool = true
+        images.forEach(db=> {
+            if(i == num && bool){
+                filename = db.title;
+                bool = false;
+            }
+            else if(bool){
+                i++
+            }
+        });
+        console.log("Returning :" + filename)
+        res.status(200).sendFile(__dirname + '/images/' + filename)
     }
+
     else{
         res.status(200).sendFile(__dirname + req.url)
     }
