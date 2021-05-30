@@ -15,34 +15,34 @@ var app = express()
 
 var port = 420
 
-var images
-var messages
+var images = require("./images.json")
+var messages = require("./messages.json")
 
 app.use(express.static('public'))
 
-fs.readFile('./images.json', 'utf8', (err, data) => {
+// fs.readFile('./images.json', 'utf8', (err, data) => {
 
-    if (err) {
-        console.log(`Error reading file from disk: ${err}`);
-    } else {
+//     if (err) {
+//         console.log(`Error reading file from disk: ${err}`);
+//     } else {
 
-        // parse JSON string to JSON object
-        images = JSON.parse(data);
-    }
+//         // parse JSON string to JSON object
+//         images = JSON.parse(data);
+//     }
 
-});
+// });
 
-fs.readFile('./messages.json', 'utf8', (err, data) => {
+// fs.readFile('./messages.json', 'utf8', (err, data) => {
 
-    if (err) {
-        console.log(`Error reading file from disk: ${err}`);
-    } else {
+//     if (err) {
+//         console.log(`Error reading file from disk: ${err}`);
+//     } else {
 
-        // parse JSON string to JSON object
-        messages = JSON.parse(data);
-    }
+//         // parse JSON string to JSON object
+//         messages = JSON.parse(data);
+//     }
 
-});
+// });
 
 app.get('/', function(req,res,next){
     console.log("GET /")
@@ -51,15 +51,6 @@ app.get('/', function(req,res,next){
     console.log("req.headers", req.headers)
 
     res.status(200).sendFile(__dirname + '/public/index.html')
-})
-
-app.get('/new-potato', function(req,res,next){
-    console.log("GET /new-potato")
-    console.log("req.url", req.url)
-    console.log("req.method", req.method)
-    console.log("req.headers", req.headers)
-
-    res.status(200).sendFile(__dirname + '/public/newPotato.html')
 })
 
 app.post('/images', (req, res, next) => { //Image uploading
