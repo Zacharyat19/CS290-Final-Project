@@ -15,8 +15,8 @@
     <div class="nav-bar">
         <a href="/" class ="nav-item">Home</a>
         <a href="/about" class ="nav-item">About</a>
-        <a href="/new-message" class ="nav-item">New Message</a>
-        <a href="/new-potato" class ="nav-item">New Potato</a>
+        <a class ="nav-item new-message">New Message</a>
+        <a class ="nav-item new-potato">New Potato</a>
     </div>
     <div>
         <img class = "main-image" src="potato">
@@ -25,8 +25,12 @@
         
     </div>
 
-    
-    <form action="/images" method="post" enctype="multipart/form-data" class="hidden">
+    <form action="/messages" method="post" enctype="multipart/form-data" class="hidden messageSubmit">
+        <input type="text" name="message">
+        <button type="submit">Submit</button>
+      </form>
+
+    <form action="/images" method="post" enctype="multipart/form-data" class="hidden potatoSubmit">
         <input type="file" name="image">
         <button type="submit">Submit</button>
       </form>
