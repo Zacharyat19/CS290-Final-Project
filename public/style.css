@@ -27,6 +27,10 @@ body{
     
 }
 
+.new-message{
+    padding-right: 10px;
+}
+
 .main-image{
     margin-top:100px;
     margin-bottom:auto;

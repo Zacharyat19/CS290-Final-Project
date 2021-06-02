@@ -1,5 +1,4 @@
 
-
 var potatoSubmissionForm = document.querySelector('.potatoSubmit')
 var messageSubmissionForm = document.querySelector('.messageSubmit')
 
@@ -14,4 +13,3 @@ messageSubmissionTab.addEventListener('click', function(){
     messageSubmissionForm.classList.remove('hidden')
     potatoSubmissionForm.classList.add('hidden')
 })
-

@@ -25,7 +25,6 @@ fs.readFile('./images.json', 'utf8', (err, data) => {
     if (err) {
         console.log(`Error reading file from disk: ${err}`);
     } else {
-
         // parse JSON string to JSON object
         images = JSON.parse(data);
     }
@@ -37,7 +36,6 @@ fs.readFile('./messages.json', 'utf8', (err, data) => {
     if (err) {
         console.log(`Error reading file from disk: ${err}`);
     } else {
-
         // parse JSON string to JSON object
         messages = JSON.parse(data);
     }
@@ -72,6 +70,19 @@ app.post('/images', (req, res, next) => { //Image uploading
         var rawData = fs.readFileSync(oldPath);
       
         fs.writeFile(newPath, rawData, function(err){
+            if(err) console.log(err)
+            return res.send("Successfully uploaded")
+        })
+  })
+});
+
+app.post('/messages', (req, res, next) => { //Image uploading
+    
+    const form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files){
+        console.log("message:",fields.message)
+        writeLocation = "./messages/"+ fields.message +".txt"
+        fs.writeFile(writeLocation, fields.message, function(err){
             if(err) console.log(err)
             return res.send("Successfully uploaded")
         })
