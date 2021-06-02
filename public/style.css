@@ -33,7 +33,7 @@ body{
     margin-left:auto;
     margin-right:auto;
     display:block;
-    width:50%;
+    width:100%;
     min-height:25%;
 }
 
@@ -44,6 +44,29 @@ body{
 .container{
     position: relative;
     text-align: center;
-    color: white;
+    color: black;
+    width:50%;
+    padding:auto;
+    margin:auto;
 }
 
+#firstMessage{
+    position:absolute;
+    top:30px;
+    right:30px;
+}
+#secondMessage{
+    position:absolute;
+    top:30px;
+    left:30px;
+}
+#thirdMessage{
+    position:absolute;
+    bottom:30px;
+    right:30px;
+}
+#fourthMessage{
+    position:absolute;
+    bottom:30px;
+    left:30px;
+}

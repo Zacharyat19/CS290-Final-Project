@@ -18,32 +18,6 @@ var port = 420
 var images = require("./images.json")
 var messages = require("./messages.json")
 
-app.use(express.static('public'))
-
-// fs.readFile('./images.json', 'utf8', (err, data) => {
-
-//     if (err) {
-//         console.log(`Error reading file from disk: ${err}`);
-//     } else {
-
-//         // parse JSON string to JSON object
-//         images = JSON.parse(data);
-//     }
-
-// });
-
-// fs.readFile('./messages.json', 'utf8', (err, data) => {
-
-//     if (err) {
-//         console.log(`Error reading file from disk: ${err}`);
-//     } else {
-
-//         // parse JSON string to JSON object
-//         messages = JSON.parse(data);
-//     }
-
-// });
-
 app.get('/', function(req,res,next){
     console.log("GET /")
     console.log("req.url", req.url)
@@ -99,9 +73,11 @@ app.get('/:particularPotato', function(req,res,next){
     }
 
     else{
-        res.status(200).sendFile(__dirname + req.url)
+        res.status(200).sendFile(__dirname + "/public/" + req.url)
     }
 })
+
+app.use(express.static('public'))
 
 app.get('*', function(req,res,next){   //Throw 404 if page not found
     console.log("404 Error. Page not found")
