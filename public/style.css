@@ -40,3 +40,10 @@ body{
 .hidden{
     visibility: hidden;
 }
+
+.container{
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
