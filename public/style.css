@@ -75,10 +75,14 @@ body{
     width:10%;
 }
 
-.message{
+.text{
     left:0px;
 }
 
 .author{
     right:0px;
+}
+
+.message{
+    
 }

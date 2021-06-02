@@ -25,6 +25,14 @@ app.get('/', function(req,res,next){
     console.log("req.headers", req.headers)
 
     res.status(200).sendFile(__dirname + '/public/index.html')
+
+    var arr = getElementsByClassName("message")
+    var i = 0
+    for(i = 0; i < arr.length; i++){
+        var randVal = Math.floor(Math.random() * messages.length)
+        arr[i].innerHTML = "<p class = 'text'>" + messages[randVal].message + "</p>" + "<p class = 'author'>" + messages[randVal].author + "</p>"
+    }
+
 })
 
 app.post('/images', (req, res, next) => { //Image uploading
