@@ -54,27 +54,31 @@ body{
     position:absolute;
     top:30px;
     right:30px;
+    width:10%;
 }
 #secondMessage{
     position:absolute;
     top:30px;
     left:30px;
+    width:10%;
 }
 #thirdMessage{
     position:absolute;
     bottom:30px;
     right:30px;
+    width:10%;
 }
 #fourthMessage{
     position:absolute;
     bottom:30px;
     left:30px;
+    width:10%;
 }
 
 .message{
-
+    left:0px;
 }
 
 .author{
-    
+    right:0px;
 }
