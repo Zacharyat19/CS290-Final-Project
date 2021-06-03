@@ -76,15 +76,17 @@ app.post('/images', (req, res, next) => { //Image uploading
   })
 });
 
-app.post('/messages', (req, res, next) => { //Image uploading
+app.post('', (req, res, next) => { //Image uploading
     
     const form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files){
         console.log("message:",fields.message)
-        writeLocation = "./messages/"+ fields.message +".txt"
-        fs.writeFile(writeLocation, fields.message, function(err){
+        //var writeLocation = "./messages/"+ fields.message +".txt"
+        var writeLocation = require('./messages.json')
+        writeLocation.push({message: fields.message, author: "author name"})
+        fs.writeFile(__dirname + '/messages.json', JSON.stringify(writeLocation, null, 2), function(err){
             if(err) console.log(err)
-            return res.send("Successfully uploaded")
+            return res.send("Successfully posted")
         })
   })
 });
