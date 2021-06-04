@@ -8,7 +8,7 @@ var app = express()
 const uploadImg = multer({dest: '/images/'})
 const formidable = require('formidable');
 
-// Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data 
+// Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data
 
 var express = require('express')
 var app = express()
@@ -53,6 +53,15 @@ app.get('/', function(req,res,next){
     res.status(200).sendFile(__dirname + '/public/index.html')
 })
 
+app.get('/about', function(req,res,next){
+    console.log("GET /")
+    console.log("req.url", req.url)
+    console.log("req.method", req.method)
+    console.log("req.headers", req.headers)
+
+    res.status(200).sendFile(__dirname + '/public/about.html')
+})
+
 app.get('/new-potato', function(req,res,next){
     console.log("GET /new-potato")
     console.log("req.url", req.url)
@@ -70,14 +79,14 @@ app.post('/images', (req, res, next) => { //Image uploading
         var oldPath = files.image.path;
         var newPath = path.join(__dirname, 'images') + '/' + files.image.name;
         var rawData = fs.readFileSync(oldPath);
-      
+
         fs.writeFile(newPath, rawData, function(err){
             if(err) console.log(err)
             return res.send("Successfully uploaded")
         })
   })
 });
-    
+
 app.get('/:particularPotato', function(req,res,next){
     if(req.url == "/potato"){
         console.log("GET /" + req.params.particularPotato)
