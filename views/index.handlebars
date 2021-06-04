@@ -1,0 +1,27 @@
+
+    <div class = "container">
+        <img class = "main-image" src="potato">
+        {{!-- <div id = "firstMessage" class = "message">
+            {{message0}}
+        </div>
+        <div id = "secondMessage" class = "message">            
+            {{message1}}
+        <div id = "thirdMessage" class = "message">
+            {{message2}}
+        </div>
+        <div id = "fourthMessage" class = "message">
+            {{message3}}
+        </div> --}}
+        {{#each messages}}
+            {{>message}}
+        {{/each}}
+    </div>
+    <div class = "footer">
+        
+    </div>
+
+    
+    <form action="/images" method="post" enctype="multipart/form-data" class="hidden">
+        <input type="file" name="image">
+        <button type="submit">Submit</button>
+      </form>

@@ -1,15 +1,19 @@
 window.onload = randomize()
 
 function randomize() {
-   document.getElementById("firstMessage").style.top = (Math.floor(Math.random() * 100) + 10) + "%";
-    document.getElementById("firstMessage").style.right = Math.floor(Math.random() * 100) + 10  + "%";
-
-    document.getElementById("secondMessage").style.top = Math.floor(Math.random() * 100) + 10 + "%";
-    document.getElementById("secondMessage").style.left = Math.floor(Math.random() * 100) + 10 + "%";
-
-    document.getElementById("thirdMessage").style.bottom = Math.floor(Math.random() * 100) + 10 + "%";
-    document.getElementById("thirdMessage").style.right = Math.floor(Math.random() * 100) + 10 + "%";
-
-    document.getElementById("fourthMessage").style.bottom = Math.floor(Math.random() * 100) + 10 + "%";
-    document.getElementById("fourthMessage").style.left = Math.floor(Math.random() * 100) + 10 + "%";
+    var arr = document.getElementsByClassName("message")
+    for(item of arr){
+        item.style.top = (Math.floor(Math.random() * 100)) + "%";
+        item.style.right = (Math.floor(Math.random() * 100)) + "%";
+    }
+    var length = arr.length
+    if(length > 3){
+        var prob = 3 / length
+        for(ele of arr){
+            var eleProb = Math.random()
+            if(eleProb > prob){
+                ele.parentNode.removeChild(ele)
+            }
+        }
+    }
 }
