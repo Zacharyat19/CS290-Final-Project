@@ -117,7 +117,7 @@ app.get('/:particularPotato', function(req,res,next){
     }
 
     else{
-        res.status(200).sendFile(__dirname + req.url)
+        next()
     }
 })
 
