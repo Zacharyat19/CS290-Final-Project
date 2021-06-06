@@ -15,8 +15,8 @@
     <div class="nav-bar">
         <a href="/" class ="nav-item">Home</a>
         <a href="/about" class ="nav-item">About</a>
-        <a href="/new-message" class ="nav-item">New Message</a>
-        <a href="/new-potato" class ="nav-item">New Potato</a>
+        <a class ="nav-item new-message">New Message</a>
+        <a class ="nav-item new-potato">New Potato</a>
     </div>
     <div>
         <img class = "main-image" src="potato">
@@ -26,8 +26,21 @@
 
     </div>
 
+    <form action="" method="post" enctype="multipart/form-data" class="hidden messageSubmit">
+        <input type="text" name="message" calss ="messageText">
+        <button type="submit" class="messageSubmitButton">Submit</button>
+      </form>
 
-    <form action="/images" method="post" enctype="multipart/form-data" class="hidden">
+      <!--<form method="post" action="" id="formToSave">
+        <dl>
+            <dt>Name:</dt>
+            <dd><input type="text" id="nameField" value="Sample" /></dd>
+        </dl>
+        <p><a href="javascript://Save as TXT" id="submitLink">Save as TXT</a></p>
+        <p><button type="submit"><img src="http://www.suttonrunners.org/images/save_icon.gif" alt=""/> Save as TXT</button></p>
+    </form> -->
+
+    <form action="/images" method="post" enctype="multipart/form-data" class="hidden potatoSubmit">
         <input type="file" name="image">
         <button type="submit">Submit</button>
     </form>

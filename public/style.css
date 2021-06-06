@@ -30,6 +30,10 @@ body{
     padding:10px;
 }
 
+.new-message{
+    padding-right: 10px;
+}
+
 .main-image{
     width: 1200px;
     height: 550px;

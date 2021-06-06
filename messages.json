@@ -1,4 +1,18 @@
 [
-    { "message":"Potatoe","author":"Dom"},
-    { "message":"Pog-tato","author":"Ian"}
+  {
+    "message": "Potatoe",
+    "author": "Dom"
+  },
+  {
+    "message": "Pog-tato",
+    "author": "Ian"
+  },
+  {
+    "message": "hmmm?",
+    "author": "author name"
+  },
+  {
+    "message": "This message was added through the website!",
+    "author": "author name"
+  }
 ]
