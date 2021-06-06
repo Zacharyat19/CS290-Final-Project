@@ -4,7 +4,8 @@ body{
 }
 .header{
     background-color: rgb(183, 146, 104);
-    color:rgb(78, 105, 26);
+    -webkit-text-stroke: 2px black;
+    color: rgb(78, 105, 26);
     padding:5px;
     text-align:center;
     font-family:sans-serif;
@@ -13,10 +14,13 @@ body{
 
 .nav-bar{
     background-color: rgb(78, 105, 26);
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
     color:rgb(183, 146, 104);
     padding:5px;
     text-align:center;
     font-family:sans-serif;
+    position: sticky;
 }
 .nav-item a:hover, a:visited, a:link, a:active{
     text-decoration: none;
@@ -24,23 +28,34 @@ body{
     margin:5px;
     font-size:18px;
     padding:10px;
-    
 }
 
 .main-image{
-    margin-top:100px;
-    margin-bottom:auto;
-    margin-left:auto;
-    margin-right:auto;
-    display:block;
-    width:50%;
-    min-height:25%;
+    width: 1200px;
+    height: 550px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 230px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.clipping-background{
+    width: 1490px;
+    height: 656px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
 .hidden{
     visibility: hidden;
 }
-
 #modal-backdrop {
     position: fixed;
     top: 0;

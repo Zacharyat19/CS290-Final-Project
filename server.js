@@ -8,9 +8,7 @@ var app = express()
 const uploadImg = multer({dest: '/images/'})
 const formidable = require('formidable');
 
-var numPotatos = 4;
-
-// Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data 
+// Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data
 
 var express = require('express')
 var app = express()
@@ -55,6 +53,15 @@ app.get('/', function(req,res,next){
     res.status(200).sendFile(__dirname + '/public/index.html')
 })
 
+app.get('/about', function(req,res,next){
+    console.log("GET /")
+    console.log("req.url", req.url)
+    console.log("req.method", req.method)
+    console.log("req.headers", req.headers)
+
+    res.status(200).sendFile(__dirname + '/public/about.html')
+})
+
 app.get('/new-potato', function(req,res,next){
     console.log("GET /new-potato")
     console.log("req.url", req.url)
@@ -72,28 +79,45 @@ app.post('/images', (req, res, next) => { //Image uploading
         var oldPath = files.image.path;
         var newPath = path.join(__dirname, 'images') + '/' + files.image.name;
         var rawData = fs.readFileSync(oldPath);
-      
+
         fs.writeFile(newPath, rawData, function(err){
             if(err) console.log(err)
             return res.send("Successfully uploaded")
         })
   })
 });
-    
+
 app.get('/:particularPotato', function(req,res,next){
     if(req.url == "/potato"){
-    console.log("GET /" + req.params.particularPotato)
-    console.log("req.url", req.url)
-    console.log("req.method", req.method)
-    console.log("req.headers", req.headers)
+        console.log("GET /" + req.params.particularPotato)
+        console.log("req.url", req.url)
+        console.log("req.method", req.method)
+        console.log("req.headers", req.headers)
 
-    var num = Math.round(Math.random() * (numPotatos - 1))
-    num += 1
-    console.log("Returning :" + req.params.particularPotato + num + '.png')
-    res.status(200).sendFile(__dirname + '/images/' + req.params.particularPotato + num + '.png')
+        var size = 0;
+        images.forEach(db=> {
+            size++;
+        });
+        var num = Math.round(Math.random() * (size - 1))
+        num += 1
+        var i = 1
+        var filename
+        var bool = true
+        images.forEach(db=> {
+            if(i == num && bool){
+                filename = db.title;
+                bool = false;
+            }
+            else if(bool){
+                i++
+            }
+        });
+        console.log("Returning :" + filename)
+        res.status(200).sendFile(__dirname + '/images/' + filename)
     }
+
     else{
-        res.status(200).sendFile(__dirname + req.url)
+        next()
     }
 })
 
