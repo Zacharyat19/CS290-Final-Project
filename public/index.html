@@ -30,7 +30,34 @@
     <form action="/images" method="post" enctype="multipart/form-data" class="hidden">
         <input type="file" name="image">
         <button type="submit">Submit</button>
-      </form>
+    </form>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-message-modal" class="hidden">
+    <div class="modal-dialog">
+
+    <div class="modal-header">
+        <h3>Create a Message</h3>
+        <button type="button" class="modal-close-button">&times;</button>
+    </div>
+
+    <div class="modal-body">
+    <div class="message-input-element">
+        <label for="message-text-input">Message</label>
+        <textarea id="message-text-input"></textarea>
+    </div>
+    <div class="message-input-element">
+        <label for="message-author-input">Author</label>
+        <input type="text" id="message-author-input">
+    </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="modal-cancel-button">Cancel</button>
+        <button type="button" class="modal-accept-button">Create Message</button>
+    </div>
+    </div>
+    </div>
 
 </body>
 </html>
