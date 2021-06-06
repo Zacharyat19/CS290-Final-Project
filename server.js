@@ -63,7 +63,7 @@ app.post('/images', (req, res, next) => { //Image uploading
 });
     
 app.get('/:particularPotato', function(req,res,next){
-    if(req.url == "/potato"){
+    if(req.url == "/potato.png"){
         console.log("GET /" + req.params.particularPotato)
         console.log("req.url", req.url)
         console.log("req.method", req.method)
@@ -92,7 +92,7 @@ app.get('/:particularPotato', function(req,res,next){
     }
 
     else{
-        res.status(200).sendFile(__dirname + "/public/" + req.url)
+        next();
     }
 })
 
