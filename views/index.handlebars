@@ -1,27 +1,53 @@
-
     <div class = "container">
         <img class = "main-image" src="potato.png">
-        {{!-- <div id = "firstMessage" class = "message">
-            {{message0}}
-        </div>
-        <div id = "secondMessage" class = "message">            
-            {{message1}}
-        <div id = "thirdMessage" class = "message">
-            {{message2}}
-        </div>
-        <div id = "fourthMessage" class = "message">
-            {{message3}}
-        </div> --}}
-        {{#each messages}}
-            {{>message}}
-        {{/each}}
+        <img class = "clipping-background" src="Clip-Background.png">
     </div>
     <div class = "footer">
-        
+
     </div>
 
-    
-    <form action="/images" method="post" enctype="multipart/form-data" class="hidden">
+    <form action="" method="post" enctype="multipart/form-data" class="hidden messageSubmit">
+        <input type="text" name="message" calss ="messageText">
+        <button type="submit" class="messageSubmitButton">Submit</button>
+      </form>
+
+      <!--<form method="post" action="" id="formToSave">
+        <dl>
+            <dt>Name:</dt>
+            <dd><input type="text" id="nameField" value="Sample" /></dd>
+        </dl>
+        <p><a href="javascript://Save as TXT" id="submitLink">Save as TXT</a></p>
+        <p><button type="submit"><img src="http://www.suttonrunners.org/images/save_icon.gif" alt=""/> Save as TXT</button></p>
+    </form> -->
+
+    <form action="/images" method="post" enctype="multipart/form-data" class="hidden potatoSubmit">
         <input type="file" name="image">
         <button type="submit">Submit</button>
-      </form>
+    </form>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-message-modal" class="hidden">
+    <div class="modal-dialog">
+
+    <div class="modal-header">
+        <h3>Create a Message</h3>
+        <button type="button" class="modal-close-button">&times;</button>
+    </div>
+
+    <div class="modal-body">
+    <div class="message-input-element">
+        <label for="message-text-input">Message</label>
+        <textarea id="message-text-input"></textarea>
+    </div>
+    <div class="message-input-element">
+        <label for="message-author-input">Author</label>
+        <input type="text" id="message-author-input">
+    </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="modal-cancel-button">Cancel</button>
+        <button type="button" class="modal-accept-button">Create Message</button>
+    </div>
+    </div>
+    </div>
