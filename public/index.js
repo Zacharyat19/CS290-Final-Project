@@ -3,14 +3,14 @@ var messageSubmissionForm = document.querySelector('.messageSubmit')
 
 var potatoSubmissionTab = document.querySelector(".new-potato")
 potatoSubmissionTab.addEventListener('click', function () {
-  document.querySelector(".footer").classList.remove("hidden")
+  //document.querySelector(".footer").classList.remove("hidden")
   potatoSubmissionForm.classList.remove('hidden')
   messageSubmissionForm.classList.add('hidden')
 })
 
 var messageSubmissionTab = document.querySelector(".new-message")
 messageSubmissionTab.addEventListener('click', function () {
-  document.querySelector(".footer").classList.remove("hidden")
+  //document.querySelector(".footer").classList.remove("hidden")
   messageSubmissionForm.classList.remove('hidden')
   potatoSubmissionForm.classList.add('hidden')
 })

@@ -12,6 +12,14 @@ body{
     font-size:20px;
 }
 
+.messageSubmit{
+  z-index: 5;
+}
+.potatoSubmit{
+  z-index: 5;
+}
+
+
 .nav-bar{
     background-color: rgb(78, 105, 26);
     border-top: 2px solid black;

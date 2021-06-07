@@ -19,6 +19,17 @@
         <a href="/about" class ="nav-item">About</a>
         <a class ="nav-item new-message">New Message</a>
         <a class ="nav-item new-potato">New Potato</a>
+        <div class = "footer hidden"></div>
+            <form action="/images" method="post" enctype="multipart/form-data" class="hidden potatoSubmit">
+            <input type="file" name="image">
+            <button type="submit">Submit</button>
+            </form>
+            <form action="" method="post" enctype="multipart/form-data" class="hidden messageSubmit">
+            <input type="text" name="message" calss ="messageText">
+            <button type="submit" class="messageSubmitButton">Submit</button>
+            </form>
+      </div>
+      
     </div>
     {{{body}}}
 
