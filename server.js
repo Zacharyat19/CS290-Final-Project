@@ -65,7 +65,13 @@ app.post('/images', (req, res, next) => { //Image uploading
 
         fs.writeFile(newPath, rawData, function(err){
             if(err) console.log(err)
-            return res.send("Successfully uploaded")
+        })
+        var jsonObj = {"title":files.image.name}
+        var writeLocation = require('./images.json')
+        writeLocation.push(jsonObj)
+        fs.writeFile(__dirname + '/images.json',JSON.stringify(writeLocation, null, 2), function(err){
+            if(err) console.log(err)
+            return res.send("Successfully posted")
         })
   })
 });
@@ -77,7 +83,7 @@ app.post('', (req, res, next) => { //Image uploading
         console.log("message:",fields.message)
         //var writeLocation = "./messages/"+ fields.message +".txt"
         var writeLocation = require('./messages.json')
-        writeLocation.push({message: fields.message, author: "author name"})
+        writeLocation.push({message: fields.message})
         fs.writeFile(__dirname + '/messages.json', JSON.stringify(writeLocation, null, 2), function(err){
             if(err) console.log(err)
             return res.send("Successfully posted")

@@ -1,121 +1,110 @@
-//var fs = require("fs")
-//var data = fs.readFileSync("messages.json")
-//var message = JSON.parse(data)
 var potatoSubmissionForm = document.querySelector('.potatoSubmit')
 var messageSubmissionForm = document.querySelector('.messageSubmit')
 
 var potatoSubmissionTab = document.querySelector(".new-potato")
-potatoSubmissionTab.addEventListener('click', function(){
-    potatoSubmissionForm.classList.remove('hidden')
-    messageSubmissionForm.classList.add('hidden')
+potatoSubmissionTab.addEventListener('click', function () {
+  document.querySelector(".footer").classList.remove("hidden")
+  potatoSubmissionForm.classList.remove('hidden')
+  messageSubmissionForm.classList.add('hidden')
 })
 
 var messageSubmissionTab = document.querySelector(".new-message")
-messageSubmissionTab.addEventListener('click', function(){
-    messageSubmissionForm.classList.remove('hidden')
-    potatoSubmissionForm.classList.add('hidden')
+messageSubmissionTab.addEventListener('click', function () {
+  document.querySelector(".footer").classList.remove("hidden")
+  messageSubmissionForm.classList.remove('hidden')
+  potatoSubmissionForm.classList.add('hidden')
 })
 
 
 window.onload = randomize()
 
 function randomize() {
-    var arr = document.getElementsByClassName("message")
-    for(item of arr){
-        item.style.top = (Math.floor(Math.random() * 100)) + "%";
-        item.style.right = (Math.floor(Math.random() * 100)) + "%";
+  var arr = document.getElementsByClassName("message")
+  for (item of arr) {
+    item.style.top = (Math.floor(Math.random() * 25) + 25) + "%";
+    item.style.right = (Math.floor(Math.random() * 50) + 25) + "%";
+
+  }
+  var length = arr.length
+  if (length > 3) {
+    var prob = 3 / length
+    for (ele of arr) {
+      var eleProb = Math.random()
+      if (eleProb > prob) {
+        ele.parentNode.removeChild(ele)
+      }
     }
-    var length = arr.length
-    if(length > 3){
-        var prob = 3 / length
-        for(ele of arr){
-            var eleProb = Math.random()
-            if(eleProb > prob){
-                ele.parentNode.removeChild(ele)
-            }
-        }
-    }
+  }
 }
 
 
-function insertMessage(potatoMessage, potatoAuthor) {
-    var tempContext = {
-        message: potatoMessage,
-        author: potatoAuthor
-    }
-    message.push(tempContext)
+function insertMessage(potatoMessage) {
+  var tempContext = {
+    message: potatoMessage
+  }
+  message.push(tempContext)
 
-    var message = Handlebars.templates.message(tempContext)
-    var container = document.querySelector(".container")
-    container.insertAdjacentHTML("beforeEnd", message)
-/*
-    var newData = JSON.stringify(message)
-    fs.writeFile("messages.json", newData, (err) => {
-        if(err) {
-            throw err
-        }
-    })
-    hideCreateModal()
-
-    */
+  var message = Handlebars.templates.message(tempContext)
+  var container = document.querySelector(".container")
+  container.insertAdjacentHTML("beforeEnd", message)
 }
 
 function messages() {
-    var potatoMessage = document.getElementById('message-text-input').value;
-    var potatoAuthor = document.getElementById('message-author-input').value;
-  
-    if(potatoMessage && potatoAuthor) {
-        insertMessage(potatoMessage, potatoAuthor)
-        hideCreateTwitModal();
-    } else {
-        alert('You must have a message and an author');
-    }
+  var potatoMessage = document.getElementById('message-text-input').value;
+  var potatoAuthor = document.getElementById('message-author-input').value;
+
+  if (potatoMessage && potatoAuthor) {
+    insertMessage(potatoMessage, potatoAuthor)
+    hideCreateTwitModal();
+  } else {
+    alert('You must have a message and an author');
   }
+}
 
 function showModal() {
-    var backdrop = document.getElementById('modal-backdrop');
-    var modal = document.getElementById('create-message-modal');
-  
-    modalBackdrop.classList.remove('hidden');
-    createTwitModal.classList.remove('hidden');
-  }
+  var backdrop = document.getElementById('modal-backdrop');
+  var modal = document.getElementById('create-message-modal');
+
+  modalBackdrop.classList.remove('hidden');
+  createTwitModal.classList.remove('hidden');
+}
 
 function clear() {
-    var elements = document.getElementsByClassName('message-input-element');
-    for (var i = 0; i < elements.length; i++) {
-      var input = elements[i].querySelector('input, textarea');
-      input.value = '';
-    }
+  var elements = document.getElementsByClassName('message-input-element');
+  for (var i = 0; i < elements.length; i++) {
+    var input = elements[i].querySelector('input, textarea');
+    input.value = '';
   }
-  
+}
+
 function hideModal() {
-    var backdrop = document.getElementById('modal-backdrop');
-    var modal = document.getElementById('create-message-modal');
-  
-    modalBackdrop.classList.add('hidden');
-    modal.classList.add('hidden');
-  
-    clear();
-  }
+  var backdrop = document.getElementById('modal-backdrop');
+  var modal = document.getElementById('create-message-modal');
+
+  modalBackdrop.classList.add('hidden');
+  modal.classList.add('hidden');
+
+  clear();
+}
 
 window.addEventListener('DOMContentLoaded', function () {
-    var createTwitButton = document.getElementById('create-twit-button');
-    if (createTwitButton) {
-      createTwitButton.addEventListener('click', showCreateTwitModal);
-    }
-  
-    var modalCloseButton = document.querySelector('#create-message-modal .modal-close-button');
-    if (modalCloseButton) {
-      modalCloseButton.addEventListener('click', hideModal);
-    }
-  
-    var modalCancalButton = document.querySelector('#create-message-modal .modal-cancel-button');
-    if (modalCancalButton) {
-      modalCancalButton.addEventListener('click', hideModal);
-    }
-  
-    var modalMessageButton = document.querySelector('#create-message-modal .modal-accept-button');
-    if (modalMessageButton) {
-      modalMessageButton.addEventListener('click', messages);
-    }
-  })
+  var createTwitButton = document.getElementById('create-twit-button');
+  if (createTwitButton) {
+    createTwitButton.addEventListener('click', showCreateTwitModal);
+  }
+
+  var modalCloseButton = document.querySelector('#create-message-modal .modal-close-button');
+  if (modalCloseButton) {
+    modalCloseButton.addEventListener('click', hideModal);
+  }
+
+  var modalCancalButton = document.querySelector('#create-message-modal .modal-cancel-button');
+  if (modalCancalButton) {
+    modalCancalButton.addEventListener('click', hideModal);
+  }
+
+  var modalMessageButton = document.querySelector('#create-message-modal .modal-accept-button');
+  if (modalMessageButton) {
+    modalMessageButton.addEventListener('click', messages);
+  }
+})

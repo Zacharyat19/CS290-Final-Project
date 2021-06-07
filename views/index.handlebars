@@ -5,29 +5,20 @@
             {{>message}}
         {{/each}}
     </div>
-    <div class = "footer">
-
-    </div>
-
-    <form action="" method="post" enctype="multipart/form-data" class="hidden messageSubmit">
-        <input type="text" name="message" calss ="messageText">
-        <button type="submit" class="messageSubmitButton">Submit</button>
-      </form>
-
-      <!--<form method="post" action="" id="formToSave">
-        <dl>
-            <dt>Name:</dt>
-            <dd><input type="text" id="nameField" value="Sample" /></dd>
-        </dl>
-        <p><a href="javascript://Save as TXT" id="submitLink">Save as TXT</a></p>
-        <p><button type="submit"><img src="http://www.suttonrunners.org/images/save_icon.gif" alt=""/> Save as TXT</button></p>
-    </form> -->
-
+    <div class = "footer hidden">
     <form action="/images" method="post" enctype="multipart/form-data" class="hidden potatoSubmit">
         <input type="file" name="image">
         <button type="submit">Submit</button>
     </form>
+    <form action="" method="post" enctype="multipart/form-data" class="hidden messageSubmit">
+        <input type="text" name="message" calss ="messageText">
+        <button type="submit" class="messageSubmitButton">Submit</button>
+      </form>
+    </div>
 
+
+
+      <!--
     <div id="modal-backdrop" class="hidden"></div>
     <div id="create-message-modal" class="hidden">
     <div class="modal-dialog">
@@ -52,5 +43,5 @@
         <button type="button" class="modal-cancel-button">Cancel</button>
         <button type="button" class="modal-accept-button">Create Message</button>
     </div>
-    </div>
-    </div>
+    </div> 
+    </div>-->

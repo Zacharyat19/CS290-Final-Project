@@ -1,14 +1,23 @@
 [
-    { "message":"Potatoe","author":"Dom"},
-    { "message":"Pug Tatoe","author":"Someone"},
-    { "message":"Pog-tato","author":"Ian"},
-    { "message":"Let us commence","author":"The Baby"},
   {
-    "message": "hmmm?",
-    "author": "author name"
+    "message": "Potatoe"
   },
   {
-    "message": "This message was added through the website!",
-    "author": "author name"
+    "message": "Pug Tatoe"
+  },
+  {
+    "message": "Pog-tato"
+  },
+  {
+    "message": "Let us commence"
+  },
+  {
+    "message": "hmmm?"
+  },
+  {
+    "message": "This message was added through the website!"
+  },
+  {
+    "message": "I've just added a message!"
   }
 ]

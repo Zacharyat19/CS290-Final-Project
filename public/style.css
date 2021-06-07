@@ -62,37 +62,19 @@ body{
 }
 
 .container{
-    position: relative;
-    text-align: center;
-    color: black;
-    width:50%;
-    padding:auto;
-    margin:auto;
+  color: black;
+  width: 1200px;
+  height: 550px;
+  top:230px;
+  bottom:230;
 }
 
-#firstMessage{
-    position:absolute;
-    top:30px;
-    right:30px;
-    width:10%;
-}
-#secondMessage{
-    position:absolute;
-    top:30px;
-    left:30px;
-    width:10%;
-}
-#thirdMessage{
-    position:absolute;
-    bottom:30px;
-    right:30px;
-    width:10%;
-}
-#fourthMessage{
-    position:absolute;
-    bottom:30px;
-    left:30px;
-    width:10%;
+.footer{
+  position:fixed;
+  right:30px;
+  bottom:30px;
+  border: 5px solid lightgray;
+  padding:5px;
 }
 
 .text{
@@ -105,6 +87,7 @@ body{
 
 .message{
     position:absolute;
+    z-index:2;
 }
 
 #modal-backdrop {

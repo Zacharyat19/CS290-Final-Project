@@ -1,6 +1,14 @@
 [
-        {"title":"potato1.png"},
-        {"title":"potato2.png"},
-        {"title":"potato3.png"},
-        {"title":"potato4.png"}
+  {
+    "title": "potato1.png"
+  },
+  {
+    "title": "potato2.png"
+  },
+  {
+    "title": "potato3.png"
+  },
+  {
+    "title": "potato4.png"
+  }
 ]
