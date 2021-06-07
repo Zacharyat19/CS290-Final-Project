@@ -1,6 +1,6 @@
-var fs = require("fs")
-var data = fs.readFileSync("messages.json")
-var message = JSON.parse(data)
+//var fs = require("fs")
+//var data = fs.readFileSync("messages.json")
+//var message = JSON.parse(data)
 var potatoSubmissionForm = document.querySelector('.potatoSubmit')
 var messageSubmissionForm = document.querySelector('.messageSubmit')
 
@@ -48,7 +48,7 @@ function insertMessage(potatoMessage, potatoAuthor) {
     var message = Handlebars.templates.message(tempContext)
     var container = document.querySelector(".container")
     container.insertAdjacentHTML("beforeEnd", message)
-
+/*
     var newData = JSON.stringify(message)
     fs.writeFile("messages.json", newData, (err) => {
         if(err) {
@@ -56,6 +56,8 @@ function insertMessage(potatoMessage, potatoAuthor) {
         }
     })
     hideCreateModal()
+
+    */
 }
 
 function messages() {
@@ -116,4 +118,4 @@ window.addEventListener('DOMContentLoaded', function () {
     if (modalMessageButton) {
       modalMessageButton.addEventListener('click', messages);
     }
-  });
+  })
