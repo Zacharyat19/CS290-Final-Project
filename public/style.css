@@ -60,6 +60,53 @@ body{
 .hidden{
     visibility: hidden;
 }
+
+.container{
+    position: relative;
+    text-align: center;
+    color: black;
+    width:50%;
+    padding:auto;
+    margin:auto;
+}
+
+#firstMessage{
+    position:absolute;
+    top:30px;
+    right:30px;
+    width:10%;
+}
+#secondMessage{
+    position:absolute;
+    top:30px;
+    left:30px;
+    width:10%;
+}
+#thirdMessage{
+    position:absolute;
+    bottom:30px;
+    right:30px;
+    width:10%;
+}
+#fourthMessage{
+    position:absolute;
+    bottom:30px;
+    left:30px;
+    width:10%;
+}
+
+.text{
+    left:0px;
+}
+
+.author{
+    right:0px;
+}
+
+.message{
+    position:absolute;
+}
+
 #modal-backdrop {
     position: fixed;
     top: 0;

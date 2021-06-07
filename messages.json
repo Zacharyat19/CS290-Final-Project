@@ -1,12 +1,8 @@
 [
-  {
-    "message": "Potatoe",
-    "author": "Dom"
-  },
-  {
-    "message": "Pog-tato",
-    "author": "Ian"
-  },
+    { "message":"Potatoe","author":"Dom"},
+    { "message":"Pug Tatoe","author":"Someone"},
+    { "message":"Pog-tato","author":"Ian"},
+    { "message":"Let us commence","author":"The Baby"},
   {
     "message": "hmmm?",
     "author": "author name"

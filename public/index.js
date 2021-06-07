@@ -1,5 +1,6 @@
-
-
+var fs = require("fs")
+var data = fs.readFileSync("messages.json")
+var message = JSON.parse(data)
 var potatoSubmissionForm = document.querySelector('.potatoSubmit')
 var messageSubmissionForm = document.querySelector('.messageSubmit')
 
@@ -15,9 +16,27 @@ messageSubmissionTab.addEventListener('click', function(){
     potatoSubmissionForm.classList.add('hidden')
 })
 
-var fs = require("fs")
-var data = fs.readFileSync("messages.json")
-var message = JSON.parse(data)
+
+window.onload = randomize()
+
+function randomize() {
+    var arr = document.getElementsByClassName("message")
+    for(item of arr){
+        item.style.top = (Math.floor(Math.random() * 100)) + "%";
+        item.style.right = (Math.floor(Math.random() * 100)) + "%";
+    }
+    var length = arr.length
+    if(length > 3){
+        var prob = 3 / length
+        for(ele of arr){
+            var eleProb = Math.random()
+            if(eleProb > prob){
+                ele.parentNode.removeChild(ele)
+            }
+        }
+    }
+}
+
 
 function insertMessage(potatoMessage, potatoAuthor) {
     var tempContext = {

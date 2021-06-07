@@ -4,43 +4,25 @@ var path = require("path")
 var multer = require("multer")
 var crypto = require("crypto")
 var express = require('express')
+var Handlebars = require("handlebars")
 var app = express()
 const uploadImg = multer({dest: '/images/'})
 const formidable = require('formidable');
 
-// Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data
+
+// Recourses for uploading images: https://www.npmjs.com/package/react-images-uploading https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp21#Storing-File-Data 
 
 var express = require('express')
+var hdb = require('express-handlebars')
 var app = express()
 
 var port = 420
 
-var images
-var messages
+var images = require("./images.json")
+var messages = require("./messages.json")
 
-app.use(express.static('public'))
-
-fs.readFile('./images.json', 'utf8', (err, data) => {
-
-    if (err) {
-        console.log(`Error reading file from disk: ${err}`);
-    } else {
-        // parse JSON string to JSON object
-        images = JSON.parse(data);
-    }
-
-});
-
-fs.readFile('./messages.json', 'utf8', (err, data) => {
-
-    if (err) {
-        console.log(`Error reading file from disk: ${err}`);
-    } else {
-        // parse JSON string to JSON object
-        messages = JSON.parse(data);
-    }
-
-});
+app.engine('handlebars', hdb({defaultLayout:"main"}));
+app.set("view engine", "handlebars")
 
 app.get('/', function(req,res,next){
     console.log("GET /")
@@ -48,9 +30,20 @@ app.get('/', function(req,res,next){
     console.log("req.method", req.method)
     console.log("req.headers", req.headers)
 
-    res.status(200).sendFile(__dirname + '/public/index.html')
-})
+    //res.status(200).sendFile(__dirname + '/public/index.html')
 
+    // var arr = getElementsByClassName("message")
+    // var i = 0
+    // for(i = 0; i < arr.length; i++){
+    //     var randVal = Math.floor(Math.random() * messages.length)
+    //     arr[i].innerHTML = "<p class = 'text'>" + messages[randVal].message + "</p>" + "<p class = 'author'>" + messages[randVal].author + "</p>"
+    // }
+
+    var temp = Handlebars.template.message
+    res.status(200).render('index', {
+        messages
+    })
+})
 app.get('/about', function(req,res,next){
     console.log("GET /")
     console.log("req.url", req.url)
@@ -60,14 +53,6 @@ app.get('/about', function(req,res,next){
     res.status(200).sendFile(__dirname + '/public/about.html')
 })
 
-app.get('/new-potato', function(req,res,next){
-    console.log("GET /new-potato")
-    console.log("req.url", req.url)
-    console.log("req.method", req.method)
-    console.log("req.headers", req.headers)
-
-    res.status(200).sendFile(__dirname + '/public/newPotato.html')
-})
 
 app.post('/images', (req, res, next) => { //Image uploading
     const form = new formidable.IncomingForm();
@@ -100,8 +85,9 @@ app.post('', (req, res, next) => { //Image uploading
   })
 });
 
+    
 app.get('/:particularPotato', function(req,res,next){
-    if(req.url == "/potato"){
+    if(req.url == "/potato.png"){
         console.log("GET /" + req.params.particularPotato)
         console.log("req.url", req.url)
         console.log("req.method", req.method)
@@ -133,6 +119,8 @@ app.get('/:particularPotato', function(req,res,next){
         next()
     }
 })
+
+app.use(express.static('public'))
 
 app.get('*', function(req,res,next){   //Throw 404 if page not found
     console.log("404 Error. Page not found")
