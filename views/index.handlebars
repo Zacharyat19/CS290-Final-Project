@@ -1,6 +1,9 @@
     <div class = "container">
         <img class = "main-image" src="potato.png">
         <img class = "clipping-background" src="Clip-Background.png">
+        {{#each messages}}
+            {{>message}}
+        {{/each}}
     </div>
     <div class = "footer">
 
