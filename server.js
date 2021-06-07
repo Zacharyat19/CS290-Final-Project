@@ -43,8 +43,16 @@ app.get('/', function(req,res,next){
     res.status(200).render('index', {
         messages
     })
-
 })
+app.get('/about', function(req,res,next){
+    console.log("GET /")
+    console.log("req.url", req.url)
+    console.log("req.method", req.method)
+    console.log("req.headers", req.headers)
+
+    res.status(200).sendFile(__dirname + '/public/about.html')
+})
+
 
 app.post('/images', (req, res, next) => { //Image uploading
     const form = new formidable.IncomingForm();
@@ -54,13 +62,29 @@ app.post('/images', (req, res, next) => { //Image uploading
         var oldPath = files.image.path;
         var newPath = path.join(__dirname, 'images') + '/' + files.image.name;
         var rawData = fs.readFileSync(oldPath);
-      
+
         fs.writeFile(newPath, rawData, function(err){
             if(err) console.log(err)
             return res.send("Successfully uploaded")
         })
   })
 });
+
+app.post('', (req, res, next) => { //Image uploading
+    
+    const form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files){
+        console.log("message:",fields.message)
+        //var writeLocation = "./messages/"+ fields.message +".txt"
+        var writeLocation = require('./messages.json')
+        writeLocation.push({message: fields.message, author: "author name"})
+        fs.writeFile(__dirname + '/messages.json', JSON.stringify(writeLocation, null, 2), function(err){
+            if(err) console.log(err)
+            return res.send("Successfully posted")
+        })
+  })
+});
+
     
 app.get('/:particularPotato', function(req,res,next){
     if(req.url == "/potato.png"){
@@ -92,7 +116,7 @@ app.get('/:particularPotato', function(req,res,next){
     }
 
     else{
-        next();
+        next()
     }
 })
 
