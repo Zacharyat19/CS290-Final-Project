@@ -71,7 +71,7 @@ app.post('/images', (req, res, next) => { //Image uploading
         writeLocation.push(jsonObj)
         fs.writeFile(__dirname + '/images.json',JSON.stringify(writeLocation, null, 2), function(err){
             if(err) console.log(err)
-            res.status(200).render('index', {
+            return res.status(200).render('index', {
                 messages
             })
         })
@@ -88,7 +88,7 @@ app.post('', (req, res, next) => { //Image uploading
         writeLocation.push({message: fields.message})
         fs.writeFile(__dirname + '/messages.json', JSON.stringify(writeLocation, null, 2), function(err){
             if(err) console.log(err)
-            res.status(200).render('index', {
+            return res.status(200).render('index', {
                 messages
             })
         })
