@@ -42,7 +42,6 @@ function insertMessage(potatoMessage) {
   var tempContext = {
     message: potatoMessage
   }
-  message.push(tempContext)
 
   var message = Handlebars.templates.message(tempContext)
   var container = document.querySelector(".container")
@@ -86,25 +85,3 @@ function hideModal() {
 
   clear();
 }
-
-window.addEventListener('DOMContentLoaded', function () {
-  var createTwitButton = document.getElementById('create-twit-button');
-  if (createTwitButton) {
-    createTwitButton.addEventListener('click', showCreateTwitModal);
-  }
-
-  var modalCloseButton = document.querySelector('#create-message-modal .modal-close-button');
-  if (modalCloseButton) {
-    modalCloseButton.addEventListener('click', hideModal);
-  }
-
-  var modalCancalButton = document.querySelector('#create-message-modal .modal-cancel-button');
-  if (modalCancalButton) {
-    modalCancalButton.addEventListener('click', hideModal);
-  }
-
-  var modalMessageButton = document.querySelector('#create-message-modal .modal-accept-button');
-  if (modalMessageButton) {
-    modalMessageButton.addEventListener('click', messages);
-  }
-})
