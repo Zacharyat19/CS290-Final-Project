@@ -57,6 +57,7 @@ app.get('/about', function(req,res,next){
 app.post('/images', (req, res, next) => { //Image uploading
     const form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files){
+    if(files.image.name){
         console.log("files.image.path",files.image.path) //.image is a property sent by the form
         console.log("files.image.name", files.image.name)
         var oldPath = files.image.path;
@@ -71,10 +72,12 @@ app.post('/images', (req, res, next) => { //Image uploading
         writeLocation.push(jsonObj)
         fs.writeFile(__dirname + '/images.json',JSON.stringify(writeLocation, null, 2), function(err){
             if(err) console.log(err)
-            res.status(200).render('index', {
-                messages
-            })
+            return res.redirect('/')
         })
+    }
+    else{
+        return res.redirect('/failedUpload.html')
+    }
   })
 });
 
@@ -82,16 +85,19 @@ app.post('', (req, res, next) => { //Image uploading
     
     const form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files){
+    if(fields.message){
         console.log("message:",fields.message)
         //var writeLocation = "./messages/"+ fields.message +".txt"
         var writeLocation = require('./messages.json')
         writeLocation.push({message: fields.message})
         fs.writeFile(__dirname + '/messages.json', JSON.stringify(writeLocation, null, 2), function(err){
             if(err) console.log(err)
-            res.status(200).render('index', {
-                messages
-            })
+            return res.redirect('/')
         })
+    }
+    else{
+        return res.redirect('/failedUpload.html')
+    }
   })
 });
 

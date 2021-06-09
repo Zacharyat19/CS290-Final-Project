@@ -1,6 +1,16 @@
 var potatoSubmissionForm = document.querySelector('.potatoSubmit')
 var messageSubmissionForm = document.querySelector('.messageSubmit')
 
+window.addEventListener('click', function(evnt){
+  var tar = evnt.target;
+  console.log(evnt.target.type)
+  if(evnt.target.type === undefined){
+    potatoSubmissionForm.classList.add('hidden')
+    messageSubmissionForm.classList.add('hidden')
+
+  }
+})
+
 var potatoSubmissionTab = document.querySelector(".new-potato")
 potatoSubmissionTab.addEventListener('click', function () {
   //document.querySelector(".footer").classList.remove("hidden")
@@ -15,23 +25,35 @@ messageSubmissionTab.addEventListener('click', function () {
   potatoSubmissionForm.classList.add('hidden')
 })
 
-
 window.onload = randomize()
 
 function randomize() {
   var arr = document.getElementsByClassName("message")
   for (item of arr) {
-    item.style.top = (Math.floor(Math.random() * 25) + 25) + "%";
-    item.style.right = (Math.floor(Math.random() * 50) + 25) + "%";
+
+    item.style.top = (Math.floor(Math.random() * 25) + 45) + "%";
+    item.style.right = (Math.floor(Math.random() * 45) + 25) + "%";
 
   }
-  var length = arr.length
-  if (length > 3) {
-    var prob = 3 / length
-    for (ele of arr) {
-      var eleProb = Math.random()
-      if (eleProb > prob) {
-        ele.parentNode.removeChild(ele)
+  // var length = arr.length
+  // if (length > 3) {
+  //   var prob = 3 / length
+  //   for (ele of arr) {
+  //     var eleProb = Math.random()
+  //     if (eleProb > prob) {
+  //       ele.parentNode.removeChild(ele)
+  //     }
+  //   }
+  // }
+  for (ele of arr){
+    for (ele2 of arr){
+      if(ele != ele2){
+        var overlap = !(ele.style.right < ele2.style.right &&
+          ele.style.top < ele2.style.top)
+
+          if(overlap){
+            ele2.parentNode.removeChild(ele2)
+          }
       }
     }
   }
