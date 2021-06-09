@@ -1,6 +1,14 @@
 var potatoSubmissionForm = document.querySelector('.potatoSubmit')
 var messageSubmissionForm = document.querySelector('.messageSubmit')
 
+window.addEventListener('click', function(evnt){
+  var tar = evnt.target;
+  if(!evnt.target.classList.contains('new-potato') && !evnt.target.classList.contains('new-message')){
+  potatoSubmissionForm.classList.add('hidden')
+  messageSubmissionForm.classList.add('hidden')
+  }
+})
+
 var potatoSubmissionTab = document.querySelector(".new-potato")
 potatoSubmissionTab.addEventListener('click', function () {
   //document.querySelector(".footer").classList.remove("hidden")
@@ -14,7 +22,6 @@ messageSubmissionTab.addEventListener('click', function () {
   messageSubmissionForm.classList.remove('hidden')
   potatoSubmissionForm.classList.add('hidden')
 })
-
 
 window.onload = randomize()
 
