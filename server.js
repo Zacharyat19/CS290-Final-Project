@@ -56,6 +56,7 @@ app.get('/about', function(req,res,next){
 
 app.post('/images', (req, res, next) => { //Image uploading
     const form = new formidable.IncomingForm();
+    if(form.files){
     form.parse(req, function(err, fields, files){
         console.log("files.image.path",files.image.path) //.image is a property sent by the form
         console.log("files.image.name", files.image.name)
@@ -74,6 +75,10 @@ app.post('/images', (req, res, next) => { //Image uploading
             return res.redirect('/')
         })
   })
+}
+else{
+    return res.redirect('/failedUpload.html')
+}
 });
 
 app.post('', (req, res, next) => { //Image uploading
