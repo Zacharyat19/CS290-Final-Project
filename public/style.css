@@ -30,12 +30,16 @@ body{
     font-family:sans-serif;
     position: sticky;
 }
-.nav-item a:hover, a:visited, a:link, a:active{
+.nav-item{
     text-decoration: none;
     color:rgb(183, 146, 104);
     margin:5px;
     font-size:18px;
     padding:10px;
+}
+
+.nav-item:hover{
+  cursor:pointer;
 }
 
 .new-message{
