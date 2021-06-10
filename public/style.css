@@ -20,10 +20,10 @@ body{
 }
 
 p.text{
-  font-size: larger;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: rgb(255, 255, 255);
-  background-color: black;
+  font-size: 16px;
+  font-family: sans-serif;
+  -webkit-text-stroke: .8px black;
+  color:rgb(183, 146, 104);
 }
 
 .nav-bar{
