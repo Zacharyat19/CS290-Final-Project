@@ -3,7 +3,6 @@ var messageSubmissionForm = document.querySelector('.messageSubmit')
 
 window.addEventListener('click', function(evnt){
   var tar = evnt.target;
-  console.log(evnt.target.type)
   if(evnt.target.type === undefined){
     potatoSubmissionForm.classList.add('hidden')
     messageSubmissionForm.classList.add('hidden')

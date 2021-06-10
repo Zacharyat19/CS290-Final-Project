@@ -53,11 +53,10 @@ app.get('/about', function(req,res,next){
     res.status(200).sendFile(__dirname + '/public/about.html')
 })
 
-
 app.post('/images', (req, res, next) => { //Image uploading
     const form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files){
-    if(files.image.name){
+    if(files.image.name && (files.image.name.includes(".png") || files.image.name.includes(".jpg") || files.image.name.includes(".JPG") || files.image.name.includes(".PNG"))){
         console.log("files.image.path",files.image.path) //.image is a property sent by the form
         console.log("files.image.name", files.image.name)
         var oldPath = files.image.path;
